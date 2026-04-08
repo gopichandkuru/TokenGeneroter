@@ -1,0 +1,341 @@
+/* ============================================
+   App.css - Queue Management System Styles
+   ============================================
+   Clean, modern, beginner-friendly CSS.
+   Uses CSS variables for easy customization.
+*/
+
+/* --- CSS Variables (Color Palette) --- */
+:root {
+  --color-bg: #f0f4f8;
+  --color-card: #ffffff;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-admin: #dc2626;
+  --color-admin-hover: #b91c1c;
+  --color-serving: #16a34a;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-message-bg: #dbeafe;
+  --color-message-text: #1e40af;
+  --color-queue-item-bg: #f8fafc;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-btn: 0 2px 8px rgba(37, 99, 235, 0.15);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+/* --- Global Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* --- App Container --- */
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* --- Header --- */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 32px 16px 24px;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  border-radius: var(--radius);
+  color: white;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.2);
+}
+
+.header-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* --- Feedback Message Banner --- */
+.message-banner {
+  background: var(--color-message-bg);
+  color: var(--color-message-text);
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 14px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* --- Main Grid Layout --- */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* --- Card Base Style --- */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--color-text);
+}
+
+/* --- Current Token Card --- */
+.current-token-card {
+  border-top: 4px solid var(--color-serving);
+}
+
+.token-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+}
+
+.token-number {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -1px;
+}
+
+.token-number.serving {
+  color: var(--color-serving);
+  animation: pulse 2s infinite;
+}
+
+.no-token {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* --- Get Token Card --- */
+.get-token-card {
+  border-top: 4px solid var(--color-primary);
+  text-align: center;
+}
+
+.generated-token {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f0fdf4;
+  border-radius: var(--radius-sm);
+  border: 1px solid #bbf7d0;
+}
+
+.generated-token p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+
+.generated-token .token-number {
+  font-size: 36px;
+  color: var(--color-serving);
+}
+
+.hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* --- Queue Card --- */
+.queue-card {
+  grid-column: 1 / -1;
+  border-top: 4px solid #f59e0b;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--color-queue-item-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  transition: background 0.15s ease;
+}
+
+.queue-item:hover {
+  background: #eef2ff;
+}
+
+.queue-position {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.queue-token {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.empty-queue {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-size: 14px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.queue-count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+/* --- Admin Card --- */
+.admin-card {
+  grid-column: 1 / -1;
+  border-top: 4px solid var(--color-admin);
+  text-align: center;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+}
+
+.admin-info {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+/* --- Buttons --- */
+.btn {
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: var(--shadow-btn);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-admin {
+  background: var(--color-admin);
+  color: white;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+}
+
+.btn-admin:hover:not(:disabled) {
+  background: var(--color-admin-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+/* --- Footer --- */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* --- Animations --- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive (Mobile) --- */
+@media (max-width: 640px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .queue-card,
+  .admin-card {
+    grid-column: 1;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .token-number {
+    font-size: 36px;
+  }
+}
