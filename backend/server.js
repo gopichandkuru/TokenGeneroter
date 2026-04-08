@@ -11,6 +11,11 @@ app.use(express.json());
 
 // --- API ENDPOINTS ---
 
+// GET / - Root route to confirm server is running
+app.get("/", (req, res) => {
+  res.send("Backend API is running! 🚀 Use /api endpoints to interact.");
+});
+
 // POST /api/token — Generate a new sequential token
 app.post("/api/token", async (req, res) => {
   try {

@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 // Backend API base URL
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://tokengeneroter.onrender.com/api";
 
 function App() {
   // --- State Variables ---
